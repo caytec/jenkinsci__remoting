@@ -34,6 +34,7 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,7 +144,7 @@ class DummyClassLoader extends ClassLoader {
         for (Entry e : entries) {
             if (name.equals(e.logicalPath)) {
                 try {
-                    File f = File.createTempFile("rmiTest", "class");
+                    File f = Files.createTempFile("rmiTest", "class").toFile();
                     try (OutputStream os = new FileOutputStream(f)) {
                         os.write(e.loadTransformedClassImage());
                     }

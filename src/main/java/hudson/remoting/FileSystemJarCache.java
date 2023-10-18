@@ -172,7 +172,7 @@ public class FileSystemJarCache extends JarCacheSupport {
     /*package for testing*/ File createTempJar(@NonNull File target) throws IOException {
         File parent = target.getParentFile();
         Files.createDirectories(parent.toPath());
-        return File.createTempFile(target.getName(), "tmp", parent);
+        return Files.createTempFile(parent.toPath(), target.getName(), "tmp").toFile();
     }
 
     /**
